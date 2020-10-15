@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VehicleManagement.Domain\VehicleManagement.Domain.csproj" />
+    <ProjectReference Include="..\VehicleManagement.Service\VehicleManagement.Service.csproj" />
     <ProjectReference Include="..\VehicleManagement.Util\VehicleManagement.Util.csproj" />
   </ItemGroup>
 

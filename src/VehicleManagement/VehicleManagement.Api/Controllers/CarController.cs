@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VehicleManagement.Domain.Commands.CarCommands;
+using VehicleManagement.Domain.Queries;
 
 namespace VehicleManagement.Api.Controllers
 {
@@ -26,6 +27,21 @@ namespace VehicleManagement.Api.Controllers
             try
             {
                 var car = await _mediator.Send(command);
+                return Ok(car);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+        
+        [Route("Cars")]
+        [HttpPost]
+        public async Task<IActionResult> Cars()
+        {
+            try
+            {
+                var car = await _mediator.Send(new GetCarsQuery());
                 return Ok(car);
             }
             catch(Exception ex)

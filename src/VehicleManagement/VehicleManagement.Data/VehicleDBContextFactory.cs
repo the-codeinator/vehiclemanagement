@@ -6,7 +6,7 @@ using System.Text;
 
 namespace VehicleManagement.Data
 {
-    public class VehicleDBContextFactory : DesignTimeDbContextFactory<VehicleDbContext>
+    public class VehicleDbContextFactory : DesignTimeDbContextFactory<VehicleDbContext>
     {
         protected override VehicleDbContext CreateNewInstance(DbContextOptions<VehicleDbContext>
             options)

@@ -9,11 +9,6 @@ namespace VehicleManagement.Domain.Commands.CarCommands
 {
     public class AddCarCommand: CommandBase<CarDto>
     {
-        protected AddCarCommand()
-        {
-
-        }
-        
         public AddCarCommand(int make, string model, decimal price, string brand,
             int doors, CarBodyType carBodyType)
         {

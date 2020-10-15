@@ -36,13 +36,11 @@ namespace VehicleManagement.Api
             services.AddServices();
             services.AddInfrastructureServices(config);
             services.AddControllers();
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            var assembly = AppDomain.CurrentDomain.Load("VehicleManagement.Service");
+            services.AddMediatR(assembly);
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddLogging();
-            services.AddMvc().AddJsonOptions(opts =>
-            {
-                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+            services.AddMvc().AddNewtonsoftJson();
             services.AddSwaggerGen(s =>
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Vehicle management", Version = "v1" });

@@ -20,7 +20,7 @@ namespace VehicleManagement.Data
 
         public VehicleDbContext(DbContextOptions<VehicleDbContext> options) : base(options)
         {
-
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
