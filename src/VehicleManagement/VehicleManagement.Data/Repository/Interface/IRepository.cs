@@ -11,7 +11,7 @@ namespace VehicleManagement.Data.Repository.Interface
     {
         Task<TEntity> GetByIdAsync(Guid id);
         Task<TEntity> AddAsync(TEntity entity);
-        TEntity Remove(TEntity entity);
+        TEntity Delete(TEntity entity);
         Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity,
             bool>> predicate);
         Task<IEnumerable<TEntity>> GetAllAsync();

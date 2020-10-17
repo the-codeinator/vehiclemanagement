@@ -12,6 +12,10 @@ namespace VehicleManagement.Data.Repository.Implementation
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : Base
     {
+        protected BaseRepository()
+        {
+
+        }
         private readonly VehicleDbContext _dbContext;
         protected readonly DbSet<TEntity> _dbSets;
         public BaseRepository(VehicleDbContext dbContext)
@@ -19,7 +23,7 @@ namespace VehicleManagement.Data.Repository.Implementation
             _dbContext = dbContext ?? throw new ArgumentNullException();
             _dbSets = _dbContext.Set<TEntity>();
         }
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             await _dbSets.AddAsync(entity);
             return entity;
@@ -31,28 +35,28 @@ namespace VehicleManagement.Data.Repository.Implementation
             GC.SuppressFinalize(this);
         }
 
-        public async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<IEnumerable<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await _dbSets.Where(predicate).ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid id)
+        public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _dbSets.FirstOrDefaultAsync(f => f.Id == id);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSets.ToListAsync();
         }
 
-        public TEntity Remove(TEntity entity)
+        public virtual TEntity Delete(TEntity entity)
         {
              _dbSets.Remove(entity);
             return entity;
         }
 
-        public async Task<int> SaveChangesAsync()
+        public virtual async Task<int> SaveChangesAsync()
         {
             return await _dbContext.SaveChangesAsync();
         }

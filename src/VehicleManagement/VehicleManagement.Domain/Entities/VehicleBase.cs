@@ -6,10 +6,10 @@ namespace VehicleManagement.Domain.Entities
 {
     public class VehicleBase: Base
     {
-        public int Make { get; private set; }
-        public string Model { get; private set; }
-        public decimal Price { get; private set; }
-        public string Brand { get; private set; }
+        public virtual int Make { get; private set; }
+        public virtual string Model { get; private set; }
+        public virtual decimal Price { get; private set; }
+        public virtual string Brand { get; private set; }
 
         protected VehicleBase()
         {

@@ -6,8 +6,8 @@ namespace VehicleManagement.Domain.Entities
 {
     public class Base: IEntity
     {
-        public Guid Id { get; private set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public virtual Guid Id { get; private set; }
+        public virtual DateTime CreatedAt { get; set; }
+        public virtual DateTime UpdatedAt { get; set; }
     }
 }

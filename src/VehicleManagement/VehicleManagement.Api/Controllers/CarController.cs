@@ -20,9 +20,9 @@ namespace VehicleManagement.Api.Controllers
             _mediator = mediator;
         }
 
-        [Route("AddCar")]
+        [Route("Add")]
         [HttpPost]
-        public async Task<IActionResult> AddCar([FromBody] AddCarCommand command)
+        public async Task<IActionResult> Add([FromBody] AddCarCommand command)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace VehicleManagement.Api.Controllers
         }
         
         [Route("Cars")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Cars()
         {
             try
@@ -45,6 +45,44 @@ namespace VehicleManagement.Api.Controllers
                 return Ok(car);
             }
             catch(Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            try
+            {
+                var car = await _mediator.Send(new DeleteCarCommand(id));
+                if(car == null)
+                {
+                    return NotFound();
+                }
+                return Ok(car);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Route("Update")]
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateCarCommand updateCarCommand)
+        {
+            try
+            {
+                var car = await _mediator.Send(updateCarCommand);
+                if (car == null)
+                {
+                    return NotFound();
+                }
+                return Ok(car);
+            }
+            catch (Exception ex)
             {
                 return BadRequest();
             }

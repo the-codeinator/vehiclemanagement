@@ -8,6 +8,10 @@ namespace VehicleManagement.Data.Repository.Implementation
 {
     public class CarRepository : BaseRepository<Car>, ICarRepository
     {
+        protected CarRepository()
+        {
+
+        }
         public CarRepository(VehicleDbContext dbContext) : base(dbContext)
         {
         }

@@ -63,7 +63,7 @@ namespace VehicleManagement.Data.Test
             await _carRepository.AddAsync(car2);
             await _carRepository.SaveChangesAsync();
 
-            var deletedCar = _carRepository.Remove(car2);
+            var deletedCar = _carRepository.Delete(car2);
             await _carRepository.SaveChangesAsync();
 
             var cars = await _vehicleDbContext.Cars.ToListAsync();

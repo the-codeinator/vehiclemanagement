@@ -13,9 +13,10 @@ namespace VehicleManagement.Domain.Commands.CarCommands
         {
 
         }
-        public UpdateCarCommand(int make, string model, decimal price, string brand,
+        public UpdateCarCommand(Guid id, int make, string model, decimal price, string brand,
             int doors, CarBodyType carBodyType)
         {
+            Id = id;
             Make = make;
             Model = model;
             Price = price;
@@ -23,6 +24,9 @@ namespace VehicleManagement.Domain.Commands.CarCommands
             Doors = doors;
             CarBodyType = carBodyType;
         }
+
+        [Required]
+        public Guid Id { get; }
 
         [Required]
         public decimal Price { get; }
