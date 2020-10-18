@@ -5,6 +5,14 @@
     <UserSecretsId>7c2415cc-7363-4a8f-804e-42fb1d032245</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\studies\Core\vehiclemanagement\src\VehicleManagement\VehicleManagement.Api\VehicleManagement.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\studies\Core\vehiclemanagement\src\VehicleManagement\VehicleManagement.Api\VehicleManagement.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />

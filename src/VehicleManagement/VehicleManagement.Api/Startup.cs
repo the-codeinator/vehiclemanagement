@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -45,6 +46,8 @@ namespace VehicleManagement.Api
             {
                 s.SwaggerDoc("v1", new OpenApiInfo { Title = "Vehicle management", Version = "v1" });
                 s.DescribeAllParametersInCamelCase();
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "VehicleManagement.Api.xml");
+                s.IncludeXmlComments(filePath); ;
             });
         }
 

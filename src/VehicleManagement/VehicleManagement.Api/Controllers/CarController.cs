@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using VehicleManagement.Domain.Commands.CarCommands;
 using VehicleManagement.Domain.Queries;
 
@@ -15,11 +16,32 @@ namespace VehicleManagement.Api.Controllers
     public class CarController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public CarController(IMediator mediator)
+        private readonly ILogger<CarController> _logger;
+        public CarController(IMediator mediator, ILogger<CarController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// Add a new car
+        /// </summary>
+        ///<remarks>
+        /// Sample request:
+        ///
+        ///     POST /api/v1/car/add
+        ///     {
+        ///        "make": 2001,
+        ///        "model": "Tesla",
+        ///        "price": 120000,
+        ///        "doors":4,
+        ///        "carBodyType":0,
+        ///        "brand":"Tesla"
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="command"></param>
+        /// <returns>A new car </returns>
         [Route("Add")]
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddCarCommand command)
@@ -31,9 +53,15 @@ namespace VehicleManagement.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex.Message, ex.StackTrace);
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// Gets all the cars in the system
+        /// </summary>
+        /// <returns></returns>
         
         [Route("Cars")]
         [HttpGet]
@@ -46,10 +74,16 @@ namespace VehicleManagement.Api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex.Message, ex.StackTrace);
                 return BadRequest();
             }
         }
 
+        /// <summary>
+        /// Deletes a car entry
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Route("{id}")]
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid id)
@@ -65,10 +99,31 @@ namespace VehicleManagement.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex.StackTrace);
                 return BadRequest();
             }
         }
 
+        /// <summary>
+        /// Updates a car
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     Put /api/v1/car/update
+        ///     {
+        ///        "id":"1234-12312-1231-12313",
+        ///        "make": 2001,
+        ///        "model": "Tesla",
+        ///        "price": 120000,
+        ///        "doors":4,
+        ///        "carBodyType":0,
+        ///        "brand":"Tesla"
+        ///     }
+        ///
+        /// </remarks>
+        /// <param name="updateCarCommand"></param>
+        /// <returns></returns>
         [Route("Update")]
         [HttpPut]
         public async Task<IActionResult> Update(UpdateCarCommand updateCarCommand)
@@ -84,6 +139,7 @@ namespace VehicleManagement.Api.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message, ex.StackTrace);
                 return BadRequest();
             }
         }

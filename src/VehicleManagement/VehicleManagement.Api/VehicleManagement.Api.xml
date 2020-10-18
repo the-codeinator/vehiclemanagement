@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VehicleManagement.Api</name>
+    </assembly>
+    <members>
+        <member name="M:VehicleManagement.Api.Controllers.CarController.Add(VehicleManagement.Domain.Commands.CarCommands.AddCarCommand)">
+             <summary>
+             Add a new car
+             </summary>
+            <remarks>
+             Sample request:
+            
+                 POST /api/v1/car/add
+                 {
+                    "make": 2001,
+                    "model": "Tesla",
+                    "price": 120000,
+                    "doors":4,
+                    "carBodyType":0,
+                    "brand":"Tesla"
+                 }
+            
+             </remarks>
+             <param name="command"></param>
+             <returns>A new car </returns>
+        </member>
+        <member name="M:VehicleManagement.Api.Controllers.CarController.Cars">
+            <summary>
+            Gets all the cars in the system
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VehicleManagement.Api.Controllers.CarController.Delete(System.Guid)">
+            <summary>
+            Deletes a car entry
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VehicleManagement.Api.Controllers.CarController.Update(VehicleManagement.Domain.Commands.CarCommands.UpdateCarCommand)">
+             <summary>
+             Updates a car
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 Patch /api/v1/car/update
+                 {
+                    "id":"1234-12312-1231-12313",
+                    "make": 2001,
+                    "model": "Tesla",
+                    "price": 120000,
+                    "doors":4,
+                    "carBodyType":0,
+                    "brand":"Tesla"
+                 }
+            
+             </remarks>
+             <param name="updateCarCommand"></param>
+             <returns></returns>
+        </member>
+    </members>
+</doc>
